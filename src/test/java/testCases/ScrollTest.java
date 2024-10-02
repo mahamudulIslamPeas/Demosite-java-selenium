@@ -8,7 +8,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.Test;
 
 
-public class Experiment {
+public class ScrollTest {
     @Test
     public void experimentalTest(){
         WebDriver driver = new FirefoxDriver();

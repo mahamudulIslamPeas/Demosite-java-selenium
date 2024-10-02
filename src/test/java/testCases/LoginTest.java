@@ -7,9 +7,12 @@ import org.testng.annotations.*;
 import credentials.Credentials;
 import base.Base;
 import page.loginPage;
+import utils.TestngCustomListeners;
+
 import java.time.Duration;
 
 //import page.loginPage;
+@Listeners(TestngCustomListeners.class)
 public class LoginTest extends Base{
 	WebDriver driver;
 	loginPage page;
@@ -25,7 +28,7 @@ public class LoginTest extends Base{
 		String expectedUrl = "https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index";
 
 //		Test Steps
-		page.homePage(cred.baseUrl("TestEnvironment")); //for reference: TestEnvironment
+		page.homePage(cred.baseUrl("TestEnvironment")); //for reference: TestEnvironment`
 		page.insertUserName(cred.userName());
 		page.insertPassword(cred.password());
 		page.clickLoginButton();
