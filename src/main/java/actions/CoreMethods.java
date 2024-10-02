@@ -4,10 +4,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.JavascriptExecutor;
-public class ActionMethods extends Base{
+public class CoreMethods extends Base{
 	static WebDriver driver;
-		public ActionMethods(WebDriver driver) {
-		ActionMethods.driver = driver; //Could not use "this" keyword as the driver was initialized in a static way
+		public CoreMethods(WebDriver driver) {
+		CoreMethods.driver = driver; //Could not use "this" keyword as the driver was initialized in a static way
 	}
 	JavascriptExecutor js = (JavascriptExecutor)driver;
 	public static WebElement GetElement(String locator) {
@@ -34,4 +34,5 @@ public class ActionMethods extends Base{
 	public void scrollSmooth(String locator){
 		js.executeScript("arguments[0].scrollIntoView({block: 'center', inline: 'nearest',behavior: 'smooth'});", GetElement(locator));
 	}
+
 }

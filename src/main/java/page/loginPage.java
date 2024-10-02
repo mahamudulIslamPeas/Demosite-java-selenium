@@ -1,30 +1,28 @@
 package page;
 
-import org.openqa.selenium.Credentials;
 import org.openqa.selenium.WebDriver;
 import base.Base;
-import actions.ActionMethods;
+import actions.CoreMethods;
 import locators.loginLocators;
 
 public class loginPage extends Base{
 	WebDriver driver;
-	ActionMethods ActionMethods;
+	CoreMethods CoreMethods;
     public loginPage(WebDriver driver){
 		this.driver = driver;
-		ActionMethods = new ActionMethods(this.driver);
+		CoreMethods = new CoreMethods(this.driver);
 	}
 	public void homePage( String insertUrl) {
-		ActionMethods.hitUrl(insertUrl);
+		CoreMethods.hitUrl(insertUrl);
 	}
 	public void insertUserName(String userName) {
-		ActionMethods.insertText(loginLocators.userNameLocator,userName);
+		CoreMethods.insertText(loginLocators.userNameLocator,userName);
 	}
 	public void insertPassword(String password) {
-		ActionMethods.insertText(loginLocators.passwordLocator,password);
+		CoreMethods.insertText(loginLocators.passwordLocator,password);
 	}
 	public void clickLoginButton() {
-		ActionMethods.click(loginLocators.loginButtonLocator);
+		CoreMethods.click(loginLocators.loginButtonLocator);
 	}
-
 
 }
