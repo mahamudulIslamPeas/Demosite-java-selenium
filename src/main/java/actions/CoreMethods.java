@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.JavascriptExecutor;
 public class ActionMethods extends Base{
 	static WebDriver driver;
-	public ActionMethods(WebDriver driver) {
+		public ActionMethods(WebDriver driver) {
 		ActionMethods.driver = driver; //Could not use "this" keyword as the driver was initialized in a static way
 	}
 	JavascriptExecutor js = (JavascriptExecutor)driver;
