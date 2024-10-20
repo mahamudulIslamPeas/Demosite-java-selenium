@@ -2,23 +2,22 @@ package testCases;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import credentials.Credentials;
 import base.Base;
 import page.loginPage;
-import utils.TestngCustomListeners;
-
 import java.time.Duration;
 
-//import page.loginPage;
-@Listeners(TestngCustomListeners.class)
-public class LoginTest extends Base{
+public class LoginTest extends Base {
+	private static final Logger log = LoggerFactory.getLogger(LoginTest.class);
 	WebDriver driver;
 	loginPage page;
 	Credentials cred = new Credentials();
 
-	@Test(groups = {"LoginTest"})
+	@Test(groups = {"LoginTest"},priority = 1)
 	public void login() throws InterruptedException {
 
 //		Initialization and object creation
@@ -42,11 +41,11 @@ public class LoginTest extends Base{
 	}
 	@BeforeClass
 	public void loginTestFireAlert(){
-		System.out.println("Login Test Case is Fired");
+		log.info("Login Test Case is Fired");
 	}
 	@AfterClass
 	public void loginTestCompletionAlert(){
-		System.out.println("Login Test Case is Executed");
+		log.info("Login Test Case is Executed");
 	}
 }
 
