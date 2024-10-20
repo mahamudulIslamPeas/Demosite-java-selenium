@@ -5,36 +5,60 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
-import static  java.time.Duration.ofMillis;
+import static java.time.Duration.ofSeconds;
 
-import org.openqa.selenium.support.events.EventFiringWebDriver;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.annotations.*;
-import utils.EventHandler;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Properties;
 
 public class Base {
-	WebDriver activeDriver; //initializing driver or setting the active driver
-	EventHandler handler = new EventHandler();
-	EventFiringWebDriver eventDriver;
+	private static final Logger log = LoggerFactory.getLogger(Base.class);
+	WebDriver activeDriver;
+	//	Fetching the data from the global properties file
+	Properties prop = new Properties();
+	FileInputStream fis;
+	{
+		try {
+			fis = new FileInputStream(System.getProperty("user.dir")+"//src//main//java//project_config//GlobalData.properties");
+			prop.load(fis);
+		} catch (IOException e) {
+			log.info(e.toString());
+		}
+	}
+	String browserName = prop.getProperty("browser");
 
-
-	//	Choose any driver from this enum class
-	enum browsers{
-		ChromeDriver,
-		EdgeDriver,
-		FirefoxDriver,
-		SafariDriver
+	//	Object creation of driver
+	private void setActiveDriver(String driver) {
+		if (driver.equalsIgnoreCase("chrome"))
+		{
+			activeDriver = new ChromeDriver();
+		}
+		if (driver.equalsIgnoreCase("edge"))
+		{
+			activeDriver = new EdgeDriver();
+		}
+		if (driver.equalsIgnoreCase("firefox"))
+		{
+			activeDriver = new FirefoxDriver();
+		}
+		if (driver.equalsIgnoreCase("safari"))
+		{
+			activeDriver = new SafariDriver();
+		}
+	}
+	public WebDriver getActiveDriver(){
+		return activeDriver;
 	}
 	@BeforeTest
 	public void setUpBrowser() {
-		setActiveDriver(browsers.FirefoxDriver); //Choose the browser from here
+		setActiveDriver(browserName); //Choose the browser from here
 		activeDriver.manage().window().maximize();
-		activeDriver.manage().timeouts().implicitlyWait(ofMillis(30000));
-		activeDriver.manage().timeouts().pageLoadTimeout(ofMillis(30000));
-
-
-//		eventDriver.register(handler);
+		activeDriver.manage().timeouts().implicitlyWait(ofSeconds(30));
+		activeDriver.manage().timeouts().pageLoadTimeout(ofSeconds(30));
 	}
-
 	@AfterTest
 	public void closeBrowser() {
 		if (activeDriver != null){
@@ -42,29 +66,5 @@ public class Base {
 		}
 		System.out.println("Closed From Base");
 	}
-
-//	Object creation of driver
-	private void setActiveDriver(browsers driver) {
-		if (driver == browsers.ChromeDriver)
-		{
-			activeDriver = new ChromeDriver();
-		}
-		if (driver == browsers.EdgeDriver)
-		{
-			activeDriver = new EdgeDriver();
-		}
-		if (driver == browsers.FirefoxDriver)
-		{
-			activeDriver = new FirefoxDriver();
-		}
-		if (driver == browsers.SafariDriver)
-		{
-			activeDriver = new SafariDriver();
-		}
-	}
-	public WebDriver getActiveDriver(){
-//		driver = activeDriver;
-		return activeDriver;
-    }
 
 }
