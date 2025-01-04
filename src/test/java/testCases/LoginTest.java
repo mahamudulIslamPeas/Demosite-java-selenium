@@ -24,7 +24,7 @@ public class LoginTest extends Base {
 		driver = getActiveDriver();
 		page = new loginPage(driver);
 		WebDriverWait explicitWait = new WebDriverWait(this.driver, Duration.ofSeconds(40));
-		String expectedUrl = "https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index";
+		String expectedUrl = cred.AppUrls("dashboard");
 
 //		Test Steps
 		page.homePage(cred.baseUrl("TestEnvironment")); //for reference: TestEnvironment`
