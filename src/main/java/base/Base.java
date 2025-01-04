@@ -15,8 +15,10 @@ import java.io.IOException;
 import java.util.Properties;
 
 public class Base {
+
 	private static final Logger log = LoggerFactory.getLogger(Base.class);
 	WebDriver activeDriver;
+
 	//	Fetching the data from the global properties file
 	Properties prop = new Properties();
 	FileInputStream fis;
@@ -61,10 +63,15 @@ public class Base {
 	}
 	@AfterTest
 	public void closeBrowser() {
-		if (activeDriver != null){
-			activeDriver.quit();
+		try {
+			if (activeDriver != null){
+				activeDriver.quit();
+			}
+			log.info("Successfully Terminated");
+		} catch (Exception e) {
+			log.error("Could not terminate the driver properlyException-",e);
 		}
-		System.out.println("Closed From Base");
+
 	}
 
 }

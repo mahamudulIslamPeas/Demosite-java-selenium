@@ -8,6 +8,14 @@ public class Credentials {
             return "Invalid Environment";
         }
     }
+    public String AppUrls(String module){
+        if ( module.equalsIgnoreCase("dashboard") ){
+            return "https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index";
+        }
+        else {
+            return "Invalid module name";
+        }
+    }
     public String userName(){
         return "Admin";
     }
