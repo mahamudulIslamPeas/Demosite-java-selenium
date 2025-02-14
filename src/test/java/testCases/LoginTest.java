@@ -11,7 +11,9 @@ import base.Base;
 import page.loginPage;
 import java.time.Duration;
 
+@Listeners(testComponents.customTestNGListeners.class)
 public class LoginTest extends Base {
+
 	private static final Logger log = LoggerFactory.getLogger(LoginTest.class);
 	WebDriver driver;
 	loginPage page;

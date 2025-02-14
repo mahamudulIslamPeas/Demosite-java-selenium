@@ -2,13 +2,13 @@ package page;
 
 import org.openqa.selenium.WebDriver;
 import base.Base;
-import actions.CoreMethods;
+import genericClass.CoreMethods;
 import locators.loginLocators;
 
 public class loginPage extends Base{
 	WebDriver driver;
 	CoreMethods CoreMethods;
-    public loginPage(WebDriver driver){
+	public loginPage(WebDriver driver){
 		this.driver = driver;
 		CoreMethods = new CoreMethods(this.driver);
 	}
