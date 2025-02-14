@@ -1,5 +1,6 @@
 package base;
 
+import com.aventstack.extentreports.ExtentTest;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -31,6 +32,14 @@ public class Base {
 		}
 	}
 	String browserName = prop.getProperty("browser");
+	String platform = prop.getProperty("platform");
+
+	private void setPlatform(){
+		if(platform.equalsIgnoreCase("app")){
+			
+		}
+	}
+
 
 	//	Object creation of driver
 	private void setActiveDriver(String driver) {
@@ -70,6 +79,7 @@ public class Base {
 			log.info("Successfully Terminated");
 		} catch (Exception e) {
 			log.error("Could not terminate the driver properlyException-",e);
+
 		}
 
 	}
